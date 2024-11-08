@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "772240536470",
+    "project_id": "cost-wave-441115",
+    "storage_bucket": "cost-wave-441115.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772240536470:android:bccfeb8474817c2c4363b7",
+        "android_client_info": {
+          "package_name": "cost.wave.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaw9TPLlMk1itCelumQ9xzb19hSbg_0kI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
