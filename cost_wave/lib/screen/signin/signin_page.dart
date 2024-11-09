@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../components/widgets/logo.dart';
 import '../../components/widgets/simple_text.dart';
-import '../home/home_page.dart';
+import '../navigation_screen.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class _SigninPageState extends State<SigninPage> {
         );
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const HomePage()),
+          MaterialPageRoute(builder: (context) => const NavigationScreen()),
         );
       } catch (e) {
         // ユーザー登録に失敗した場合
