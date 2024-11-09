@@ -13,6 +13,7 @@ class CustomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
@@ -20,6 +21,7 @@ class CustomNavigationBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.add_box),
+          backgroundColor: Colors.green,
           label: 'Input',
         ),
         BottomNavigationBarItem(
@@ -32,8 +34,8 @@ class CustomNavigationBar extends StatelessWidget {
         ),
       ],
       currentIndex: currentIndex,
-      selectedItemColor: Colors.blueAccent,
-      unselectedItemColor: Colors.grey,
+      selectedItemColor: const Color.fromARGB(255, 16, 99, 167),
+      unselectedItemColor: const Color.fromARGB(255, 61, 61, 61),
       onTap: onTap,
       type: BottomNavigationBarType.fixed,
     );

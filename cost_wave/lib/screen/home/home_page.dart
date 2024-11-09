@@ -5,11 +5,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Home Feed',
-        style: Theme.of(context).textTheme.headlineMedium,
-      ),
-    );
+    return Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        body: Center(
+            child: Card(
+                color: Theme.of(context).colorScheme.primary,
+                elevation: 8,
+                child: Container(
+                  child: Text(
+                    'Home Feed',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                ))));
   }
 }
