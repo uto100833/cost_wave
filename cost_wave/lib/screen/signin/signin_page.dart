@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../components/widgets/logo.dart';
-import '../components/widgets/simple_text.dart';
+import '../../components/widgets/logo.dart';
+import '../../components/widgets/simple_text.dart';
+import '../home/home_page.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({Key? key}) : super(key: key);
@@ -27,10 +28,10 @@ class _SigninPageState extends State<SigninPage> {
           email: email,
           password: password,
         );
-        // ユーザー登録に成功した場合
-        setState(() {
-          infoText = "ログインに成功しました！";
-        });
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePage()),
+        );
       } catch (e) {
         // ユーザー登録に失敗した場合
         setState(() {
