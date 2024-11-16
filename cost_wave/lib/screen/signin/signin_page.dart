@@ -5,7 +5,7 @@ import '../../components/widgets/simple_text.dart';
 import '../navigation_screen.dart';
 
 class SigninPage extends StatefulWidget {
-  const SigninPage({Key? key}) : super(key: key);
+  const SigninPage({super.key});
   @override
   State<SigninPage> createState() => _SigninPageState();
 }
@@ -28,10 +28,12 @@ class _SigninPageState extends State<SigninPage> {
           email: email,
           password: password,
         );
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const NavigationScreen()),
-        );
+        if (mounted) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const NavigationScreen()),
+          );
+        }
       } catch (e) {
         // ユーザー登録に失敗した場合
         setState(() {

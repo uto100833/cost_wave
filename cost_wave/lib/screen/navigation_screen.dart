@@ -1,38 +1,111 @@
+import 'package:cost_wave/screen/transition/transition_page.dart';
 import 'package:flutter/material.dart';
+import '../app_theme.dart';
 import '../components/widgets/custom_navigation_bar.dart';
+import '../model/tabIcon_data.dart';
 import 'home/home_page.dart';
 
 class NavigationScreen extends StatefulWidget {
-  const NavigationScreen({Key? key}) : super(key: key);
+  const NavigationScreen({super.key});
 
   @override
   State<NavigationScreen> createState() => _NavigationScreenState();
 }
 
-class _NavigationScreenState extends State<NavigationScreen> {
-  int _selectedIndex = 0;
+class _NavigationScreenState extends State<NavigationScreen>
+    with TickerProviderStateMixin {
 
-  final List<Widget> _pages = [
-    const HomePage(),
-    // const InputPage(),
-    // const NotificationsPage(),
-    // const SettingsPage(),
-  ];
+  AnimationController? animationController;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  List<TabIconData> tabIconsList = TabIconData.tabIconsList;
+
+  Widget tabBody = Container(
+    color: AppTheme.background,
+  );
+
+  @override
+  void initState() {
+    for (TabIconData tab in tabIconsList) {
+      tab.isSelected = false;
+    }
+    tabIconsList[0].isSelected = true;
+    tabBody = const HomePage();
+    animationController = AnimationController(
+        duration: const Duration(milliseconds: 600), vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // アニメーションコントローラーの破棄
+    animationController?.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _pages[_selectedIndex],
-      bottomNavigationBar: CustomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+    return Container(
+      color: AppTheme.background,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: FutureBuilder<bool>(
+          future: getData(),
+          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            if (!snapshot.hasData) {
+              return const SizedBox();
+            } else {
+              return Stack(
+                children: <Widget>[
+                  tabBody,
+                  bottomBar(),
+                ],
+              );
+            }
+          },
+        ),
       ),
+    );
+  }
+
+  Future<bool> getData() async {
+    await Future<dynamic>.delayed(const Duration(milliseconds: 200));
+    return true;
+  }
+
+  Widget bottomBar() {
+    return Column(
+      children: <Widget>[
+        const Expanded(
+          child: SizedBox(),
+        ),
+        CustomNavigationBar(
+          tabIconsList: tabIconsList,
+          addClick: () {},
+          changeIndex: (int index) {
+            if (index == 0 || index == 2) {
+              animationController?.reverse().then<dynamic>((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody =
+                      HomePage(animationController: animationController);
+                });
+              });
+            } else if (index == 1 || index == 3) {
+              animationController?.reverse().then<dynamic>((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody =
+                      TransitionPage(animationController: animationController);
+                });
+              });
+            }
+          },
+        ),
+      ],
     );
   }
 }
