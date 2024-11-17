@@ -14,7 +14,6 @@ class NavigationScreen extends StatefulWidget {
 
 class _NavigationScreenState extends State<NavigationScreen>
     with TickerProviderStateMixin {
-
   AnimationController? animationController;
 
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
@@ -29,9 +28,9 @@ class _NavigationScreenState extends State<NavigationScreen>
       tab.isSelected = false;
     }
     tabIconsList[0].isSelected = true;
-    tabBody = const HomePage();
     animationController = AnimationController(
         duration: const Duration(milliseconds: 600), vsync: this);
+    tabBody = HomePage(animationController: animationController);
     super.initState();
   }
 
@@ -88,8 +87,7 @@ class _NavigationScreenState extends State<NavigationScreen>
                   return;
                 }
                 setState(() {
-                  tabBody =
-                      HomePage(animationController: animationController);
+                  tabBody = HomePage(animationController: animationController);
                 });
               });
             } else if (index == 1 || index == 3) {
