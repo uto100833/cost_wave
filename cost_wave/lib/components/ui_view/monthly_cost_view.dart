@@ -2,7 +2,7 @@ import 'package:cost_wave/main.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import '../../../app_theme.dart';
+import '../../app_theme.dart';
 
 class MonthlyCostView extends StatelessWidget {
   final AnimationController? animationController;

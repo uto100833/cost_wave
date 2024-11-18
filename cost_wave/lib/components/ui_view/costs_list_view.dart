@@ -2,7 +2,7 @@ import 'package:cost_wave/app_theme.dart';
 import 'package:cost_wave/model/costs_list_data.dart';
 import 'package:flutter/material.dart';
 
-import '../../../main.dart';
+import '../../main.dart';
 
 class CostsListView extends StatefulWidget {
   const CostsListView(
