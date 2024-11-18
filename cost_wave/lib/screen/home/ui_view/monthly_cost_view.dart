@@ -124,203 +124,40 @@ class MonthlyCostView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 24, right: 24, top: 8, bottom: 16),
-                      child: Row(
+                      child: Wrap(
+                        spacing: 16.0, // 横方向の間隔
+                        runSpacing: 16.0, // 縦方向の間隔
                         children: <Widget>[
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                const Text(
-                                  'Carbs',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: AppTheme.fontName,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    letterSpacing: -0.2,
-                                    color: AppTheme.darkText,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 4),
-                                  child: Container(
-                                    height: 4,
-                                    width: 70,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          HexColor('#87A0E5').withOpacity(0.2),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(4.0)),
-                                    ),
-                                    child: Row(
-                                      children: <Widget>[
-                                        Container(
-                                          width:
-                                              ((70 / 1.2) * animation!.value),
-                                          height: 4,
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(colors: [
-                                              HexColor('#87A0E5'),
-                                              HexColor('#87A0E5')
-                                                  .withOpacity(0.5),
-                                            ]),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(4.0)),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 6),
-                                  child: Text(
-                                    '12g left',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: AppTheme.fontName,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                      color: AppTheme.grey.withOpacity(0.5),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          _buildCostCard(
+                            title: 'Sales',
+                            progressValue: animation!.value * (70 / 1.2),
+                            progressColor: HexColor('#87A0E5'),
+                            remaining: '10,000yen left',
                           ),
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                const Text(
-                                  'Protein',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: AppTheme.fontName,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    letterSpacing: -0.2,
-                                    color: AppTheme.darkText,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 4),
-                                  child: Container(
-                                    height: 4,
-                                    width: 70,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          HexColor('#F56E98').withOpacity(0.2),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(4.0)),
-                                    ),
-                                    child: Row(
-                                      children: <Widget>[
-                                        Container(
-                                          width: ((70 / 2) *
-                                              animationController!.value),
-                                          height: 4,
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(colors: [
-                                              HexColor('#F56E98')
-                                                  .withOpacity(0.1),
-                                              HexColor('#F56E98'),
-                                            ]),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(4.0)),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 6),
-                                  child: Text(
-                                    '30g left',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: AppTheme.fontName,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                      color: AppTheme.grey.withOpacity(0.5),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          _buildCostCard(
+                            title: 'Materials',
+                            progressValue:
+                                animationController!.value * (70 / 2),
+                            progressColor: HexColor('#F56E98'),
+                            remaining: '100,000yen left',
                           ),
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                const Text(
-                                  'Fat',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: AppTheme.fontName,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    letterSpacing: -0.2,
-                                    color: AppTheme.darkText,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 4),
-                                  child: Container(
-                                    height: 4,
-                                    width: 70,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          HexColor('#F1B440').withOpacity(0.2),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(4.0)),
-                                    ),
-                                    child: Row(
-                                      children: <Widget>[
-                                        Container(
-                                          width: ((70 / 2.5) *
-                                              animationController!.value),
-                                          height: 4,
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(colors: [
-                                              HexColor('#F1B440')
-                                                  .withOpacity(0.1),
-                                              HexColor('#F1B440'),
-                                            ]),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(4.0)),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 6),
-                                  child: Text(
-                                    '10g left',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: AppTheme.fontName,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                      color: AppTheme.grey.withOpacity(0.5),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          _buildCostCard(
+                            title: 'Labor',
+                            progressValue:
+                                animationController!.value * (70 / 2.5),
+                            progressColor: HexColor('#F1B440'),
+                            remaining: '50,000yen left',
+                          ),
+                          _buildCostCard(
+                            title: 'Utilities',
+                            progressValue:
+                                animationController!.value * (70 / 3),
+                            progressColor: HexColor('#34A853'),
+                            remaining: '20,000yen left',
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -328,6 +165,74 @@ class MonthlyCostView extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  Widget _buildCostCard({
+    required String title,
+    required double progressValue,
+    required Color progressColor,
+    required String remaining,
+  }) {
+    return SizedBox(
+      width: 150, // 各カードの幅
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontFamily: AppTheme.fontName,
+              fontWeight: FontWeight.w500,
+              fontSize: 16,
+              letterSpacing: -0.2,
+              color: AppTheme.darkText,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Container(
+              height: 4,
+              width: 70,
+              decoration: BoxDecoration(
+                color: progressColor.withOpacity(0.2),
+                borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+              ),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    width: progressValue,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                        progressColor,
+                        progressColor.withOpacity(0.5),
+                      ]),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(4.0)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 6),
+            child: Text(
+              remaining,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: AppTheme.fontName,
+                fontWeight: FontWeight.w600,
+                fontSize: 12,
+                color: AppTheme.grey.withOpacity(0.5),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -445,5 +350,73 @@ class CurvePainter extends CustomPainter {
   double degreeToRadians(double degree) {
     var redian = (math.pi / 180) * degree;
     return redian;
+  }
+
+  Widget _buildCostCard({
+    required String title,
+    required double progressValue,
+    required Color progressColor,
+    required String remaining,
+  }) {
+    return SizedBox(
+      width: 150, // 各カードの幅
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontFamily: AppTheme.fontName,
+              fontWeight: FontWeight.w500,
+              fontSize: 16,
+              letterSpacing: -0.2,
+              color: AppTheme.darkText,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Container(
+              height: 4,
+              width: 70,
+              decoration: BoxDecoration(
+                color: progressColor.withOpacity(0.2),
+                borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+              ),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    width: progressValue,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                        progressColor,
+                        progressColor.withOpacity(0.5),
+                      ]),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(4.0)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 6),
+            child: Text(
+              remaining,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: AppTheme.fontName,
+                fontWeight: FontWeight.w600,
+                fontSize: 12,
+                color: AppTheme.grey.withOpacity(0.5),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

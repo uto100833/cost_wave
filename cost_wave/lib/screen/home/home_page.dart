@@ -1,4 +1,5 @@
 import 'package:cost_wave/app_theme.dart';
+import 'package:cost_wave/screen/home/ui_view/costs_list_view.dart';
 import 'package:flutter/material.dart';
 
 import 'ui_view/monthly_cost_view.dart';
@@ -74,6 +75,28 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             curve: const Interval((1 / count) * 1, 1.0,
                 curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController!,
+      ),
+    );
+
+    listViews.add(
+      TitleView(
+        titleTxt: 'Costs List',
+        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+            parent: widget.animationController!,
+            curve: const Interval((1 / count) * 0, 1.0,
+                curve: Curves.fastOutSlowIn))),
+        animationController: widget.animationController!,
+      ),
+    );
+
+    listViews.add(
+      CostsListView(
+        mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
+            CurvedAnimation(
+                parent: widget.animationController!,
+                curve: const Interval((1 / count) * 3, 1.0,
+                    curve: Curves.fastOutSlowIn))),
+        mainScreenAnimationController: widget.animationController,
       ),
     );
   }
