@@ -1,5 +1,5 @@
 import 'dart:math' as math;
-import 'package:cost_wave/screen/%20input/%20input_cost_screen.dart';
+import 'package:cost_wave/screen/%20input/input_page.dart';
 
 import '../../app_theme.dart';
 import 'package:flutter/material.dart';
@@ -173,11 +173,8 @@ class _CustomNavigationBarState extends State<CustomNavigationBar>
                           highlightColor: Colors.transparent,
                           focusColor: Colors.transparent,
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const InputCostPage()),
-                            );
+                            setRemoveAllSelection(widget.tabIconsList?[4]);
+                            widget.changeIndex!(4);
                           },
                           child: const Icon(
                             Icons.add,

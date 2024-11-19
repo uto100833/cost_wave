@@ -7,11 +7,13 @@ class CustomAppBar extends StatelessWidget {
     required this.animationController,
     required this.topBarAnimation,
     this.topBarOpacity = 0.0,
+    required this.titleTxt,
   });
 
   final AnimationController animationController;
   final Animation<double> topBarAnimation;
   final double topBarOpacity;
+  final String titleTxt;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,7 @@ class CustomAppBar extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  'Home',
+                                  titleTxt,
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontFamily: AppTheme.fontName,

@@ -1,9 +1,14 @@
 import 'package:cost_wave/app_theme.dart';
-import 'package:cost_wave/components/ui_view/costs_list_view.dart';
+import 'package:cost_wave/components/ui_view/area_list_view.dart';
+import 'package:cost_wave/screen/home/widgets/costs_list_view.dart';
+import 'package:cost_wave/components/ui_view/custom_app_bar.dart';
+import 'package:cost_wave/components/ui_view/glass_view.dart';
+import 'package:cost_wave/components/ui_view/running_view.dart';
+import 'package:cost_wave/components/ui_view/water_view.dart';
+import 'package:cost_wave/components/ui_view/workout_view.dart';
 import 'package:flutter/material.dart';
-
-import '../../components/ui_view/monthly_cost_view.dart';
-import '../../components/ui_view/title_view.dart';
+import 'package:cost_wave/screen/home/widgets/monthly_cost_view.dart';
+import 'package:cost_wave/components/ui_view/title_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, this.animationController});
@@ -99,6 +104,56 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         mainScreenAnimationController: widget.animationController,
       ),
     );
+
+    // listViews.add(
+    //   WorkoutView(
+    //     animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+    //         parent: widget.animationController!,
+    //         curve: const Interval((1 / count) * 2, 1.0,
+    //             curve: Curves.fastOutSlowIn))),
+    //     animationController: widget.animationController!,
+    //   ),
+    // );
+    // listViews.add(
+    //   WaterView(
+    //     mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
+    //         CurvedAnimation(
+    //             parent: widget.animationController!,
+    //             curve: const Interval((1 / count) * 7, 1.0,
+    //                 curve: Curves.fastOutSlowIn))),
+    //     mainScreenAnimationController: widget.animationController!,
+    //   ),
+    // );
+    // listViews.add(
+    //   GlassView(
+    //       animation: Tween<double>(begin: 0.0, end: 1.0).animate(
+    //           CurvedAnimation(
+    //               parent: widget.animationController!,
+    //               curve: const Interval((1 / count) * 8, 1.0,
+    //                   curve: Curves.fastOutSlowIn))),
+    //       animationController: widget.animationController!),
+    // );
+
+    // listViews.add(
+    //   RunningView(
+    //     animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+    //         parent: widget.animationController!,
+    //         curve: const Interval((1 / count) * 3, 1.0,
+    //             curve: Curves.fastOutSlowIn))),
+    //     animationController: widget.animationController!,
+    //   ),
+    // );
+
+    // listViews.add(
+    //   AreaListView(
+    //     mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
+    //         CurvedAnimation(
+    //             parent: widget.animationController!,
+    //             curve: const Interval((1 / count) * 5, 1.0,
+    //                 curve: Curves.fastOutSlowIn))),
+    //     mainScreenAnimationController: widget.animationController!,
+    //   ),
+    // );
   }
 
   @override
@@ -110,7 +165,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         body: Stack(
           children: <Widget>[
             getMainListViewUI(),
-            getAppBarUI(),
+            CustomAppBar(
+                animationController: widget.animationController!,
+                topBarAnimation: topBarAnimation!,
+                titleTxt: 'Home'),
             SizedBox(
               height: MediaQuery.of(context).padding.bottom,
             )
@@ -149,74 +207,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           );
         }
       },
-    );
-  }
-
-  Widget getAppBarUI() {
-    return Column(
-      children: <Widget>[
-        AnimatedBuilder(
-          animation: widget.animationController!,
-          builder: (BuildContext context, Widget? child) {
-            return FadeTransition(
-              opacity: topBarAnimation!,
-              child: Transform(
-                transform: Matrix4.translationValues(
-                    0.0, 30 * (1.0 - topBarAnimation!.value), 0.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppTheme.white.withOpacity(topBarOpacity),
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(32.0),
-                    ),
-                    boxShadow: <BoxShadow>[
-                      BoxShadow(
-                          color: AppTheme.grey.withOpacity(0.4 * topBarOpacity),
-                          offset: const Offset(1.1, 1.1),
-                          blurRadius: 10.0),
-                    ],
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: MediaQuery.of(context).padding.top,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: 16,
-                            right: 16,
-                            top: 16 - 8.0 * topBarOpacity,
-                            bottom: 12 - 8.0 * topBarOpacity),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Home',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    fontFamily: AppTheme.fontName,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 22 + 6 - 6 * topBarOpacity,
-                                    letterSpacing: 1.2,
-                                    color: AppTheme.darkerText,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
-        )
-      ],
     );
   }
 }

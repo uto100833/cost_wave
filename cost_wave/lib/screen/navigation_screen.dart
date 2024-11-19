@@ -1,3 +1,4 @@
+import 'package:cost_wave/screen/%20input/input_page.dart';
 import 'package:cost_wave/screen/transition/transition_page.dart';
 import 'package:flutter/material.dart';
 import '../app_theme.dart';
@@ -98,6 +99,16 @@ class _NavigationScreenState extends State<NavigationScreen>
                 setState(() {
                   tabBody =
                       TransitionPage(animationController: animationController);
+                });
+              });
+            } else if (index == 4) {
+              animationController?.reverse().then<dynamic>((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody =
+                      InputCostPage(animationController: animationController);
                 });
               });
             }

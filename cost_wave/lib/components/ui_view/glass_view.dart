@@ -36,12 +36,12 @@ class GlassView extends StatelessWidget {
                                 bottomLeft: Radius.circular(8.0),
                                 bottomRight: Radius.circular(8.0),
                                 topRight: Radius.circular(8.0)),
-                            // boxShadow: <BoxShadow>[
-                            //   BoxShadow(
-                            //       color: AppTheme.grey.withOpacity(0.2),
-                            //       offset: Offset(1.1, 1.1),
-                            //       blurRadius: 10.0),
-                            // ],
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                  color: AppTheme.grey.withOpacity(0.2),
+                                  offset: const Offset(1.1, 1.1),
+                                  blurRadius: 10.0),
+                            ],
                           ),
                           child: Column(
                             children: <Widget>[

@@ -45,5 +45,12 @@ class TabIconData {
       isSelected: false,
       animationController: null,
     ),
+    TabIconData(
+      imagePath: 'lib/assets/tab_profile.png',
+      selectedImagePath: 'lib/assets/tab_profile_selected.png',
+      index: 4,
+      isSelected: false,
+      animationController: null,
+    ),
   ];
 }
