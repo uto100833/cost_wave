@@ -1,5 +1,5 @@
 import 'package:cost_wave/app_theme.dart';
-import 'package:cost_wave/components/ui_view/wave_view.dart';
+import 'package:cost_wave/components/widgets/wave_view.dart';
 import 'package:cost_wave/main.dart';
 import 'package:flutter/material.dart';
 

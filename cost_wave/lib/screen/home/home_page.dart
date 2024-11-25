@@ -1,14 +1,9 @@
 import 'package:cost_wave/app_theme.dart';
-import 'package:cost_wave/components/ui_view/area_list_view.dart';
 import 'package:cost_wave/screen/home/widgets/costs_list_view.dart';
-import 'package:cost_wave/components/ui_view/custom_app_bar.dart';
-import 'package:cost_wave/components/ui_view/glass_view.dart';
-import 'package:cost_wave/components/ui_view/running_view.dart';
-import 'package:cost_wave/components/ui_view/water_view.dart';
-import 'package:cost_wave/components/ui_view/workout_view.dart';
+import 'package:cost_wave/components/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:cost_wave/screen/home/widgets/monthly_cost_view.dart';
-import 'package:cost_wave/components/ui_view/title_view.dart';
+import 'package:cost_wave/components/widgets/title_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, this.animationController});
