@@ -83,7 +83,7 @@ class _NavigationScreenState extends State<NavigationScreen>
           tabIconsList: tabIconsList,
           addClick: () {},
           changeIndex: (int index) {
-            if (index == 0 || index == 2) {
+            if (index == 0 || index == 3) {
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   return;
@@ -102,7 +102,7 @@ class _NavigationScreenState extends State<NavigationScreen>
                       CostListPage(animationController: animationController);
                 });
               });
-            } else if (index == 3) {
+            } else if (index == 2) {
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   return;
