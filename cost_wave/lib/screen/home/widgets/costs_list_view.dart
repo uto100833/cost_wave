@@ -107,9 +107,7 @@ class CostsView extends StatelessWidget {
                 100 * (1.0 - animation!.value), 0.0, 0.0),
             child: Flex(direction: Axis.vertical, children: [
               Flexible(
-                child:
-                    // child: Flexible(
-                    Stack(
+                child: Stack(
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(
