@@ -1,4 +1,5 @@
 import 'package:cost_wave/screen/%20input/input_page.dart';
+import 'package:cost_wave/screen/list/cost_list_page.dart';
 import 'package:cost_wave/screen/transition/transition_page.dart';
 import 'package:flutter/material.dart';
 import '../app_theme.dart';
@@ -91,7 +92,17 @@ class _NavigationScreenState extends State<NavigationScreen>
                   tabBody = HomePage(animationController: animationController);
                 });
               });
-            } else if (index == 1 || index == 3) {
+            } else if (index == 1) {
+              animationController?.reverse().then<dynamic>((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody =
+                      CostListPage(animationController: animationController);
+                });
+              });
+            } else if (index == 3) {
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   return;

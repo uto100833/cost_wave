@@ -1,5 +1,5 @@
 import 'package:cost_wave/app_theme.dart';
-import 'package:cost_wave/model/costs_list_data.dart';
+import 'package:cost_wave/model/cost_list_data.dart';
 import 'package:flutter/material.dart';
 
 import '../../../main.dart';
@@ -20,7 +20,7 @@ class CostsListView extends StatefulWidget {
 class _CostsListViewState extends State<CostsListView>
     with TickerProviderStateMixin {
   AnimationController? animationController;
-  List<CostsListData> costsListData = CostsListData.costsListData;
+  List<CostListData> costsListData = CostListData.costListData;
 
   @override
   void initState() {
@@ -50,7 +50,7 @@ class _CostsListViewState extends State<CostsListView>
           child: Transform(
             transform: Matrix4.translationValues(
                 0.0, 30 * (1.0 - widget.mainScreenAnimation!.value), 0.0),
-            child: Container(
+            child: SizedBox(
               height: 216,
               width: double.infinity,
               child: ListView.builder(
@@ -91,7 +91,7 @@ class CostsView extends StatelessWidget {
       this.animationController,
       this.animation});
 
-  final CostsListData? costsListData;
+  final CostListData? costsListData;
   final AnimationController? animationController;
   final Animation<double>? animation;
 
