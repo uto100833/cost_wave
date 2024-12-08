@@ -41,6 +41,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   intl: ^0.20.1
   font_awesome_flutter: ^10.8.0
+  cloud_firestore: ^5.5.1
 
 dev_dependencies:
   flutter_test:
