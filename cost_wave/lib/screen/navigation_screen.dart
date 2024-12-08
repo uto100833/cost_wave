@@ -1,4 +1,5 @@
 import 'package:cost_wave/screen/%20input/input_page.dart';
+import 'package:cost_wave/screen/%20settings/setting_page.dart';
 import 'package:cost_wave/screen/list/cost_list_page.dart';
 import 'package:cost_wave/screen/transition/transition_page.dart';
 import 'package:flutter/material.dart';
@@ -83,7 +84,7 @@ class _NavigationScreenState extends State<NavigationScreen>
           tabIconsList: tabIconsList,
           addClick: () {},
           changeIndex: (int index) {
-            if (index == 0 || index == 3) {
+            if (index == 0) {
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   return;
@@ -110,6 +111,16 @@ class _NavigationScreenState extends State<NavigationScreen>
                 setState(() {
                   tabBody =
                       TransitionPage(animationController: animationController);
+                });
+              });
+            } else if (index == 3) {
+              animationController?.reverse().then<dynamic>((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody =
+                      SettingPage(animationController: animationController);
                 });
               });
             } else if (index == 4) {
