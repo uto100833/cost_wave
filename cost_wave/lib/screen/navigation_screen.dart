@@ -1,5 +1,5 @@
-import 'package:cost_wave/screen/%20input/input_page.dart';
-import 'package:cost_wave/screen/%20settings/setting_page.dart';
+import 'package:cost_wave/screen/input/input_page.dart';
+import 'package:cost_wave/screen/settings/setting_page.dart';
 import 'package:cost_wave/screen/list/cost_list_page.dart';
 import 'package:cost_wave/screen/transition/transition_page.dart';
 import 'package:flutter/material.dart';

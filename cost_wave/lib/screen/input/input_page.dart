@@ -2,7 +2,7 @@ import 'package:cost_wave/app_theme.dart';
 import 'package:cost_wave/components/widgets/custom_app_bar.dart';
 import 'package:cost_wave/components/widgets/custom_text_field.dart';
 import 'package:cost_wave/components/widgets/dropdown_menu.dart';
-import 'package:cost_wave/screen/%20input/widgets/input_cost_view.dart';
+import 'package:cost_wave/screen/input/widgets/input_cost_view.dart';
 import 'package:flutter/material.dart';
 
 class InputCostPage extends StatefulWidget {
