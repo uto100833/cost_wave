@@ -3,7 +3,11 @@ import 'package:cost_wave/components/widgets/custom_app_bar.dart';
 import 'package:cost_wave/components/widgets/custom_text_field.dart';
 import 'package:cost_wave/components/widgets/dropdown_menu.dart';
 import 'package:cost_wave/screen/input/widgets/input_cost_view.dart';
+import 'package:cost_wave/screen/input/widgets/submit_button.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 class InputCostPage extends StatefulWidget {
   const InputCostPage({super.key, this.animationController});
@@ -17,10 +21,15 @@ class InputCostPage extends StatefulWidget {
 class _InputCostPageState extends State<InputCostPage>
     with TickerProviderStateMixin {
   Animation<double>? topBarAnimation;
-
   List<Widget> listViews = <Widget>[];
   final ScrollController scrollController = ScrollController();
   double topBarOpacity = 0.0;
+
+  TextEditingController nameController = TextEditingController();
+  String selectedCategory = choices.first;
+  TextEditingController amountController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  TextEditingController noteController = TextEditingController();
 
   @override
   void initState() {
@@ -63,6 +72,41 @@ class _InputCostPageState extends State<InputCostPage>
     super.dispose();
   }
 
+  Future<void> saveCostDetails() async {
+    final Map<String, dynamic> costData = {
+      'cost_name': nameController.text,
+      'cost_category': selectedCategory,
+      'amount': int.tryParse(amountController.text),
+      'expensed_at': dateController.text,
+      'note': noteController.text
+    };
+    try {
+      await FirebaseFirestore.instance.collection('cost_details').add(costData);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Data saved successfully')),
+        );
+        _clearForm(); // フォームをリセット
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error saving data: $e')),
+        );
+      }
+    }
+  }
+
+  void _clearForm() {
+    nameController.clear();
+    amountController.clear();
+    dateController.clear();
+    noteController.clear();
+    setState(() {
+      selectedCategory = choices.first; // 初期値にリセット
+    });
+  }
+
   void addListData() {
     const int count = 9;
 
@@ -73,12 +117,26 @@ class _InputCostPageState extends State<InputCostPage>
             curve: const Interval((1 / count) * 1, 1.0,
                 curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController!,
-        widgets: const [
-          CustomTextField(labelText: 'Cost Name'),
-          DropdownButtonMenu(labelText: 'Cost Category'),
-          CustomTextField(labelText: 'Cost Amount'),
-          CustomTextField(labelText: 'Cost Date'),
-          CustomTextField(labelText: 'Cost Note'),
+        widgets: [
+          CustomTextField(labelText: 'Cost Name', controller: nameController),
+          DropdownButtonMenu(
+            labelText: 'Cost Category',
+            value: selectedCategory,
+            onChanged: (String value) {
+              setState(() {
+                selectedCategory = value; // 値を更新
+              });
+            },
+          ),
+          CustomTextField(
+              labelText: 'Cost Amount', controller: amountController),
+          CustomTextField(labelText: 'Cost Date', controller: dateController),
+          CustomTextField(labelText: 'Cost Note', controller: noteController),
+          const SizedBox(height: 24), // ボタンとの間隔
+          SubmitButton(
+            onPressed: saveCostDetails, // 保存処理をボタンに渡す
+          ),
+          const SizedBox(height: 24),
         ],
       ),
     );

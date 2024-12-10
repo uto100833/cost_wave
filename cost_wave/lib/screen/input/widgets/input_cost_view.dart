@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../app_theme.dart';
 
 class InputCostView extends StatelessWidget {
@@ -45,9 +44,6 @@ class InputCostView extends StatelessWidget {
                 child: Column(
                   children: [
                     ...widgets,
-                    const SizedBox(height: 24), // ボタンとの間隔
-                    _buildSubmitButton(context),
-                    const SizedBox(height: 24),
                   ],
                 ),
               ),
@@ -55,59 +51,6 @@ class InputCostView extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-
-  Widget _buildSubmitButton(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.6, // ボタン幅
-      height: 48, // ボタン高さ
-      child: ElevatedButton(
-        onPressed: () {
-          // 登録ボタンの動作をここに記述
-        },
-        style: ButtonStyle(
-          backgroundColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.disabled)) {
-              return AppTheme.grey; // 無効時の背景色
-            }
-            return Colors.transparent; // 有効時の背景色
-          }),
-          foregroundColor:
-              WidgetStateProperty.all(AppTheme.white), // テキストとアイコンの色
-          overlayColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.pressed)) {
-              return Colors.transparent.withOpacity(0.7); // 押下時のエフェクト色
-            }
-            return null;
-          }),
-          elevation: WidgetStateProperty.all(6), // 影の強さ
-          shadowColor:
-              WidgetStateProperty.all(AppTheme.grey.withOpacity(0.3)), // 影の色
-          shape: WidgetStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0), // 角丸
-            ),
-          ),
-          padding: WidgetStateProperty.all(
-            const EdgeInsets.symmetric(vertical: 12), // 内側の余白
-          ),
-        ),
-        child: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.check_circle, size: 20), // ボタンのアイコン
-            SizedBox(width: 8),
-            Text(
-              '登録',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

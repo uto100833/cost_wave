@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
   final String labelText;
-  const CustomTextField({super.key, required this.labelText});
+  final TextEditingController controller;
+  const CustomTextField({super.key, required this.labelText, required this.controller});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -50,12 +51,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   ),
                 ],
               ),
-              child: const TextField(
+              child: TextField(
+                controller: widget.controller,
                 cursorColor: Colors.grey, // カーソルの色
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16, // テキストのフォントサイズ
                 ),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.symmetric(
                     vertical: 12, // 上下の余白を調整

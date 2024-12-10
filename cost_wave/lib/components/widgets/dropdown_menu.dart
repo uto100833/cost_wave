@@ -8,16 +8,29 @@ const List<String> choices = <String>[
 ];
 
 class DropdownButtonMenu extends StatefulWidget {
-  const DropdownButtonMenu({super.key, required this.labelText});
+  const DropdownButtonMenu({
+    super.key,
+    required this.labelText,
+    required this.onChanged, // 値変更時のコールバック
+    required this.value, // 初期値
+  });
 
   final String labelText;
+  final String value;
+  final ValueChanged<String> onChanged;
 
   @override
   State<DropdownButtonMenu> createState() => _DropdownButtonMenuState();
 }
 
 class _DropdownButtonMenuState extends State<DropdownButtonMenu> {
-  String isSelectedValue = choices.first;
+  late String isSelectedValue;
+
+  @override
+  void initState() {
+    super.initState();
+    isSelectedValue = widget.value;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +88,7 @@ class _DropdownButtonMenuState extends State<DropdownButtonMenu> {
                     setState(() {
                       isSelectedValue = value!;
                     });
+                    widget.onChanged(value!); // 親に値を通知
                   },
                 ),
               ),
